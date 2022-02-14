@@ -1,0 +1,48 @@
+<div class="container mt-5">
+
+    <form class="form-inline ">
+        <div class="form-group mb-4">
+            <label for="exampleFormControlSelect1">Country</label>
+            <select class="form-control form-select-lg mb-3" id="country"  (change)="onChangeCountry($event.target.value)" style ="width: 250px">
+                <option value="all"> Select Country</option>
+                <option *ngFor="let item of countries" value="{{item.code}}"> {{item.name}}</option>
+            </select>
+        </div>
+        <div class="form-group mb-4">
+            <label for="exampleFormControlSelect2">State</label>
+            <select class="form-control form-select-lg mb-3" id="state" (change)="onChangeState($event.target.value)" style ="width: 250px; margin-left: 30px;">
+                <option  value="all">All</option>
+                <option  value="valid">Valid Numbers</option>
+                <option  value="not valid">Invalid Numbers</option>
+            </select>
+        </div>
+        
+    </form>
+        
+
+    <h1 style ="margin-bottom: 50px">Customers Count:  {{PhonesData?.length}}</h1>
+
+        <table *ngIf="PhonesData && PhonesData.length >0" class="table table-bordered table-striped mb-5">
+            <thead>
+                <tr class="table-success">
+                    <th scope="col">Name</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Country Code</th>
+                    <th scope="col">Phone Num</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr  *ngFor="let phone of PhonesData; let i = index;">
+                    <td>{{ phone['name'] }}</td>
+                    <td>{{ phone['state'] }}</td>
+                    <td>{{ phone['country'] }}</td>
+                    <td>{{ phone['countryCode'] }}</td>
+                    <td>{{ phone['phone'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h5 *ngIf="PhonesData?.length==0">{{'There are no results for your selected filters, Please select another one'}}</h5>
+</div>
