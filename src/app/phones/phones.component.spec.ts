@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { Services } from '../services/services';
 import { PhonesComponent } from './phones.component';
+import { HelperService } from '../shared/helper.service';
+
 import * as Rx from 'rxjs';
 describe('PhonesComponent', () => {
   let component: PhonesComponent;
@@ -12,7 +14,7 @@ describe('PhonesComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PhonesComponent ],
       imports: [HttpClientModule, RouterTestingModule],
-      providers: [Services]
+      providers: [Services,HelperService]
     })
     .compileComponents();
   });
@@ -29,8 +31,8 @@ describe('PhonesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should test getPcnsDataFromServer() with data returned', () => {  
-      let getCountriesPhones = spyOn(callServices,"getPhonesDataFromServer").and.callFake(() => {
+  it('should test getCustomers() with data returned', () => {  
+      let getCountriesPhones = spyOn(callServices,"getCustomers").and.callFake(() => {
         return Rx.of([
           {"id":31,"name":"EMILE CHRISTIAN KOUKOU DIKANDA HONORE ","phone":"(237) 697151594","country":"Cameroon","state":"OK","country_code":"+237","phone_num":"697151594"},{"id":32,"name":"MICHAEL MICHAEL","phone":"(237) 677046616","country":"Cameroon","state":"OK","country_code":"+237","phone_num":"677046616"}
 
@@ -41,8 +43,8 @@ describe('PhonesComponent', () => {
       expect(component.PhonesData.length).toBe(2);
   });
 
-  it('should test getPcnsDataFromServer() with no data returned', () => { 
-    let getCountriesPhones2 = spyOn(callServices,"getPhonesDataFromServer").and.callFake(() => {
+  it('should test getCustomers() with no data returned', () => { 
+    let getCountriesPhones2 = spyOn(callServices,"getCustomers").and.callFake(() => {
       return Rx.of([       
 
       ]);

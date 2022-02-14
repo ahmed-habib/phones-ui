@@ -1,7 +1,6 @@
 import { Component, OnInit,  PLATFORM_ID, Inject } from '@angular/core'
 import { Services } from '../services/services';
 import { isPlatformBrowser} from '@angular/common';
-import { HelperService } from '../shared/helper.service';
 import { CustomerDto } from '../models/customer-dto.model';
 @Component({
   selector: 'app-phones',
